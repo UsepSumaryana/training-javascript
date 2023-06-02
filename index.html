@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requirtment Form</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="main">
+        <nav 0="" class="nav" white;="" box-shadow:="" 0px="" 4px="" 8px="" rgb(0="" z-index:="">
+            <a class="nav-item" href="https://neuronworks.co.id">
+                <img src="https://cdn.neuronworks.co.id/v0.3.8/dev/assets/img/logo/nw-horizontal.png" alt="PT. Neuronworks Indonesia" class="logo" /> </a>
+        </nav>
+        <div class="container">
+            <div class="form">
+                <div class="form-body">
+                    <div class="form-content">
+
+                        <div class="header" href="#">
+                            <div class="logo">
+                                <img src="https://cdn.neuronworks.co.id/v0.3.8/dev/assets/img/logo/logomark-sign.png" alt="Neuron 3.0" style="width: 7rem;"/>
+                            </div>
+                        </div>
+                        <div class="myForm">
+                            <h3 class="title">Form Rekrutasi</h3>
+                            <p class="caption">Isi data di bawah sesuai dengan identitas diri anda dan lowongan yang akan anda pilih</p>
+                        </div> 
+                        <form novalidate="novalidate" id="myForm">
+                            <input type="hidden" name="token" value="#" />
+                            <div class="form-group">
+                                <label for="fullname" class="active">Fullname<span class="text-danger">*</span></label> <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Masukkan nama" required="" />
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="active">Email <span class="text-danger">*</span></label> <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan email" required="" />
+                            </div>
+                            <div class="form-group">
+                                <label for="phone" class="active">Phone Number<span class="text-danger">*</span></label> <input type="tel" class="form-control" id="phone" name="phone" placeholder="Masukkan nomor telepon" required="" />
+                            </div>
+                            <div class="form-group">
+                                <label for="vacancy" class="active">Vacancy <span class="text-danger">*</span></label> <select id="vacancy" class="form-control" name="vacancy">
+                                    <option value="" disabled="" selected="">- Pilih Lowongan -</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="position" class="active">Position <span class="text-danger">*</span></label> <select id="position" class="form-control" required="" name="position">
+                                    <option value="" disabled="" selected="">- Pilih Posisi -</option>
+                                </select>
+                            </div>
+                            <div class="form-group"></div>
+                            <div class="form-group">
+                                <button type="submit" class="btn-primary">Kirim</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="footer">
+                    <ul class="list">
+                        <li>
+                            <a href="https://instagram.com/neuronworks" class="list-item">
+                                <i class="fab fa-instagram-square" aria-hidden="true"></i> </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/@NeuronworksIndonesia" class="list-item">
+                                <i class="fab fa-youtube" aria-hidden="true"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/neuronworks" class="list-item">
+                                <i class="fab fa-twitter" aria-hidden="true"></i></a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/neuronworks/" class="list-item">
+                                <i class="fab fa-facebook" aria-hidden="true"></i></a>
+                        </li>
+                    </ul> 
+                    <a class="text-decoration-none" href="https://www.neuronworks.co.id" style="display:block; margin-top: 20px;">
+                        www.neuronworks.co.id
+                    </a>
+                </div>
+            </div>
+            <div class="vector-container">
+                <div class="vector-background">
+                    <img src="https://cdn.neuronworks.co.id/v0.3.8/dev/assets/img/other/Starlid-illustration.svg" alt="PT Neuronworks Indonesia" class="vector-image" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Data Input</h3>
+            <p id="modalData"></p>
+        </div>
+    </div>
+
+</body>
+
+<script>
+
+    var vacancySelect = document.getElementById("vacancy");
+    var positionSelect = document.getElementById("position");
+
+    // Data option yang akan ditambahkan
+    var vacancies = [
+        { value: "1", text: "Lowongan 1" },
+        { value: "2", text: "Lowongan 2" },
+        { value: "3", text: "Lowongan 3" }
+    ];
+
+    var positions = [
+        { value: "1", text: "Database Engginer" },
+        { value: "2", text: "Junior Programmer" },
+        { value: "3", text: "Senior Programmer" }
+    ];
+
+    for (var i = 0; i < vacancies.length; i++) {
+        var option = document.createElement("option");
+        option.value = vacancies[i].value;
+        option.text = vacancies[i].text;
+        vacancySelect.appendChild(option);
+    }
+
+    for (var i = 0; i < positions.length; i++) {
+        var option = document.createElement("option");
+        option.value = positions[i].value;
+        option.text = positions[i].text;
+        positionSelect.appendChild(option);
+    }
+
+    // Mendapatkan referensi form dan modal
+    var form = document.getElementById("myForm");
+    var modal = document.getElementById("myModal");
+
+    // Menampilkan modal saat form di-submit
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        console.log('tes');
+        showModal();
+    });
+
+    // Menutup modal saat tombol close diklik
+    var closeBtn = document.getElementsByClassName("close")[0];
+    closeBtn.onclick = function () {
+        closeModal();
+    };
+
+    // Fungsi untuk menampilkan modal dan data input
+    function showModal() {
+        var name = document.getElementById("fullname").value;
+        var email = document.getElementById("email").value;
+        var phone = document.getElementById("phone").value;
+        var vacancy = document.getElementById("vacancy");
+        var position =  document.getElementById("position");
+
+        var modalData = document.getElementById("modalData");
+        modalData.innerHTML = "Nama: " + name + 
+        "<br>Email: " + email + 
+        "<br>Phone: " + phone +
+        "<br>Vacancy: " + vacancy.options[vacancy.selectedIndex].text + 
+        "<br>Position: " + position.options[position.selectedIndex].text ;
+
+        modal.style.display = "block";
+    }
+
+    // Fungsi untuk menutup modal
+    function closeModal() {
+        modal.style.display = "none";
+    }
+</script>
+</html>
+
