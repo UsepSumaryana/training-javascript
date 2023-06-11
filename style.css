@@ -267,3 +267,11 @@ body {
     text-decoration: none;
     cursor: pointer;
 }
+
+.error{
+    color: rgb(196, 47, 47);
+}
+
+.info{
+    color: rgb(54, 144, 240);
+}
